@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
 // import database from "./db/database.js";
 // import router from './routes.js'
 // import './models/clientes.js'
@@ -7,6 +8,8 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 // database.sync();
+
+dotenv.config();
 
 const app = express();
 
@@ -16,6 +19,7 @@ app.use(
     credentials: true, // ← ESSENCIAL para cookies
   }),
 );
+
 app.use(cookieParser());
 app.use(express.json());
 // app.use(router);
