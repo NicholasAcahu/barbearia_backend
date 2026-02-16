@@ -1,8 +1,25 @@
-console.log("Servidor da Barbearia iniciado com sucesso!");
+import express from "express";
+import cors from "cors";
+// import database from "./db/database.js";
+// import router from './routes.js'
+// import './models/clientes.js'
+// import './models/associations.js'
+import cookieParser from "cookie-parser";
 
-// Exemplo simples de lógica
-const saudacao = (nome: string) => {
-  return `Bem-vindo à Barbearia, ${nome}!`;
-};
+// database.sync();
 
-console.log(saudacao("Cliente"));
+const app = express();
+
+app.use(
+  cors({
+    origin: process.env.FRONT_END_URL, // ou o domínio do seu frontend
+    credentials: true, // ← ESSENCIAL para cookies
+  }),
+);
+app.use(cookieParser());
+app.use(express.json());
+// app.use(router);
+
+app.listen(process.env.APP_PORT, () => {
+  console.log(`O servidor está escutando a porta ${process.env.APP_PORT}`);
+});
